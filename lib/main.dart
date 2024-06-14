@@ -27,19 +27,20 @@ class HomeScreen extends StatelessWidget {
   final List<BeachInfo> beaches = [
     BeachInfo(
       name: 'Praia de Maresias',
-      imageUrl: 'https://example.com/image1.jpg', // Substitua por URLs reais de imagens
+      imageUrls: ['images/carrossel 1/image 9.png',
+                 'images/carrossel 1/image 10.png'],
       description: 'Maresias é conhecida por suas ondas e belas paisagens...',
       locationUrl: 'https://maps.google.com/some_map1', // Substitua pelo URL real do mapa
     ),
     BeachInfo(
       name: 'Praia de Itamambuca',
-      imageUrl: 'https://example.com/image2.jpg',
+      imageUrls: [],
       description: 'Itamambuca é famosa por suas águas claras...',
       locationUrl: 'https://maps.google.com/some_map2',
     ),
     BeachInfo(
       name: 'Praia Branca',
-      imageUrl: 'https://example.com/image3.jpg',
+      imageUrls: [],
       description: 'Praia Branca é um lugar perfeito para relaxar...',
       locationUrl: 'https://maps.google.com/some_map3',
     ),
@@ -102,15 +103,15 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+//Carrossel
   Widget buildCarousel(BuildContext context, List<BeachInfo> beaches) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: 200,
+        height: 400,
+        aspectRatio: 9/16,
         enlargeCenterPage: true,
-        autoPlay: true,
-        aspectRatio: 16 / 9,
+        autoPlay: false,
         autoPlayCurve: Curves.fastOutSlowIn,
-        enableInfiniteScroll: true,
         autoPlayAnimationDuration: const Duration(milliseconds: 800),
         viewportFraction: 0.8,
       ),
@@ -126,7 +127,7 @@ class HomeScreen extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => BeachDetailScreen(
               beachName: beach.name,
-              imageUrl: beach.imageUrl,
+              imageUrl: beach.imageUrls,
               description: beach.description,
               locationUrl: beach.locationUrl,
             ),
@@ -138,7 +139,7 @@ class HomeScreen extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
           image: DecorationImage(
-            image: NetworkImage(beach.imageUrl),
+            image: AssetImage(beach.imageUrls),
             fit: BoxFit.cover,
           ),
         ),
@@ -149,13 +150,13 @@ class HomeScreen extends StatelessWidget {
 
 class BeachInfo {
   final String name;
-  final String imageUrl;
+  final List <String> imageUrls;
   final String description;
   final String locationUrl;
 
   BeachInfo({
     required this.name,
-    required this.imageUrl,
+    required this.imageUrls,
     required this.description,
     required this.locationUrl,
   });
@@ -163,7 +164,7 @@ class BeachInfo {
 
 class BeachDetailScreen extends StatelessWidget {
   final String beachName;
-  final String imageUrl;
+  final List <String> imageUrl;
   final String description;
   final String locationUrl;
 
@@ -180,7 +181,7 @@ class BeachDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(beachName),
-        backgroundColor: Colors.teal,
+        backgroundColor: const Color.fromARGB(255, 90, 247, 231),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -188,6 +189,7 @@ class BeachDetailScreen extends StatelessWidget {
           },
         ),
       ),
+      //body
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -199,7 +201,7 @@ class BeachDetailScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
-                    image: NetworkImage(imageUrl),
+                    image: AssetImage(imageUrls),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -211,6 +213,7 @@ class BeachDetailScreen extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'Mali',
                     color: Colors.black,
                   ),
                 ),
