@@ -1,252 +1,144 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'praia1.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp( MaterialApp (title: "App",
+      home: MyApp(),));
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SeaHint',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-        scaffoldBackgroundColor: Colors.lightBlueAccent[100],
-      ),
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
-
-  final List<BeachInfo> beaches = [
-    BeachInfo(
-      name: 'Praia de Maresias',
-      imageUrls: ['images/carrossel 1/image 9.png',
-                 'images/carrossel 1/image 10.png'],
-      description: 'Maresias é conhecida por suas ondas e belas paisagens...',
-      locationUrl: 'https://maps.google.com/some_map1', // Substitua pelo URL real do mapa
-    ),
-    BeachInfo(
-      name: 'Praia de Itamambuca',
-      imageUrls: [],
-      description: 'Itamambuca é famosa por suas águas claras...',
-      locationUrl: 'https://maps.google.com/some_map2',
-    ),
-    BeachInfo(
-      name: 'Praia Branca',
-      imageUrls: [],
-      description: 'Praia Branca é um lugar perfeito para relaxar...',
-      locationUrl: 'https://maps.google.com/some_map3',
-    ),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Ranking SeaHint'),
-        centerTitle: true,
-        backgroundColor: Colors.teal,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Center(child: Text('Ranking SeaHint', style: TextStyle(fontSize: 35))),
+          backgroundColor: Color.fromRGBO(169, 234, 239, 1),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const Text(
-                'Confia a seguir as melhores praias eleitas pelo SeaHint:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Melhores praias de surf',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              buildCarousel(context, beaches),
-              const SizedBox(height: 20),
-              const Text(
-                'Melhores praias de banho',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              buildCarousel(context, beaches),
-              const SizedBox(height: 20),
-              const Text(
-                'Melhores praias de caminhada',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              buildCarousel(context, beaches),
-              const SizedBox(height: 20),
-              Center(
-                child: const Text(
-                  'copyright©2024 Guilherme e Henry',
-                  style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+        body: Container(
+          // decoration: BoxDecoration(
+          //   gradient: LinearGradient(
+          //     colors: [Colors.blue, Colors.purple, Colors.blue], 
+          //     begin: Alignment.centerLeft,
+          //     end: Alignment.centerRight,
+          //   ),
+          // ),// Muda a cor de fundo da página
+          color: const Color.fromRGBO(169, 234, 239, 1),
+          padding: EdgeInsets.all(16.0),
+          child: SingleChildScrollView( // Adiciona rolagem vertical
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Text(
+                  'Confira a seguir as melhores praias eleitas pelo SeaHint:',
+                  style: TextStyle(fontSize: 16),
+                  textAlign: TextAlign.center,
                 ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-//Carrossel
-  Widget buildCarousel(BuildContext context, List<BeachInfo> beaches) {
-    return CarouselSlider(
-      options: CarouselOptions(
-        height: 400,
-        aspectRatio: 9/16,
-        enlargeCenterPage: true,
-        autoPlay: false,
-        autoPlayCurve: Curves.fastOutSlowIn,
-        autoPlayAnimationDuration: const Duration(milliseconds: 800),
-        viewportFraction: 0.8,
-      ),
-      items: beaches.map((beach) => buildImageCard(context, beach)).toList(),
-    );
-  }
-
-  Widget buildImageCard(BuildContext context, BeachInfo beach) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => BeachDetailScreen(
-              beachName: beach.name,
-              imageUrl: beach.imageUrls,
-              description: beach.description,
-              locationUrl: beach.locationUrl,
+                ),
+                SizedBox(height: 20), // Espaçamento entre o texto e o primeiro carrossel
+                Center(
+                  child: Text(
+                  'Melhores praias de surfe',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                ),
+                SizedBox(height: 10),
+                CardCarousel(imgList: [
+                  'assets/images/carrossel 1/image 9.png',
+                  'assets/images/carrossel 1/image 10.png',
+                  'assets/images/carrossel 1/image 11.png',
+                  'assets/images/carrossel 1/image 12.png',
+                  'assets/images/carrossel 1/image 13.png',
+                  'assets/images/carrossel 1/image 14.png',
+                  'assets/images/carrossel 1/image 15.png',
+                  'assets/images/carrossel 1/image 16.png',
+                  'assets/images/carrossel 1/image 17.png',
+                  'assets/images/carrossel 1/image 18.png',
+                ]),
+                SizedBox(height: 20), // Espaçamento entre os carrosséis
+                Center(child: Text(
+                  'Melhores praias de banho',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),),
+                SizedBox(height: 10),
+                 CardCarousel(imgList: [
+                   'assets/images/carrossel 2/image 19.png',
+                   'assets/images/carrossel 2/image 20.png',
+                   'assets/images/carrossel 2/image 21.png',
+                   'assets/images/carrossel 2/image 22.png',
+                   'assets/images/carrossel 2/image 23.png',
+                   'assets/images/carrossel 2/image 24.png',
+                   'assets/images/carrossel 2/image 25.png',
+                   'assets/images/carrossel 2/image 26.png',
+                   'assets/images/carrossel 2/image 27.png',
+                   'assets/images/carrossel 2/image 28.png',
+                 ]),
+                SizedBox(height: 20), // Espaçamento entre os carrosséis
+                Center(child: Text(
+                  'Melhores praias de caminhada',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),),
+                SizedBox(height: 10),
+                 CardCarousel(imgList: [
+                   'assets/images/carrossel 3/image 29.png',
+                   'assets/images/carrossel 3/image 30.png',
+                   'assets/images/carrossel 3/image 31.png',
+                   'assets/images/carrossel 3/image 32.png',
+                   'assets/images/carrossel 3/image 33.png',
+                   'assets/images/carrossel 3/image 34.png',
+                   'assets/images/carrossel 3/image 35.png',
+                   'assets/images/carrossel 3/image 36.png',
+                   'assets/images/carrossel 3/image 37.png',
+                   'assets/images/carrossel 3/image 38.png',
+                 ]),
+              ],
             ),
           ),
-        );
-      },
-      child: Container(
-        margin: const EdgeInsets.all(5.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          image: DecorationImage(
-            image: AssetImage(beach.imageUrls),
-            fit: BoxFit.cover,
-          ),
         ),
       ),
     );
   }
 }
 
-class BeachInfo {
-  final String name;
-  final List <String> imageUrls;
-  final String description;
-  final String locationUrl;
+class CardCarousel extends StatelessWidget {
+  final List<String> imgList;
 
-  BeachInfo({
-    required this.name,
-    required this.imageUrls,
-    required this.description,
-    required this.locationUrl,
-  });
-}
-
-class BeachDetailScreen extends StatelessWidget {
-  final String beachName;
-  final List <String> imageUrl;
-  final String description;
-  final String locationUrl;
-
-  const BeachDetailScreen({
-    required this.beachName,
-    required this.imageUrl,
-    required this.description,
-    required this.locationUrl,
-    Key? key,
-  }) : super(key: key);
+  CardCarousel({required this.imgList});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(beachName),
-        backgroundColor: const Color.fromARGB(255, 90, 247, 231),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: imgList.map((item) => GestureDetector(
+          onTap: () {
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder:
+            (context) => const Praia1()),
+            );
           },
-        ),
-      ),
-      //body
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                height: 200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  image: DecorationImage(
-                    image: AssetImage(imageUrls),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+          child: Container(
+            width: 200.0,
+            height: 150.0,
+            margin: EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.grey[300], // Placeholder color
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: FadeInImage.assetNetwork(
+                placeholder: 'assets/loading.gif', // Coloque um GIF de carregamento nos assets
+                image: item,
+                fit: BoxFit.cover,
               ),
-              const SizedBox(height: 20),
-              Center(
-                child: Text(
-                  beachName,
-                  style: const TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Mali',
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                description,
-                style: const TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Localização:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              Container(
-                height: 200,
-                child: Image.network(
-                  locationUrl,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(height: 20),
-              Center(
-                child: const Text(
-                  'copyright©2024 Guilherme e Henry',
-                  style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+        )).toList(),
       ),
     );
   }
+
 }

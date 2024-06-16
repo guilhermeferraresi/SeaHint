@@ -19,7 +19,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
-flutter:
   assets:
-  - assets/images
+    - assets/images/carrossel 1/praia1.jpg
+    - assets/images/carrossel 1/guardasol.png
+    - assets/images/carrossel 1/mapa1.png
+
+
+  
