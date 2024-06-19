@@ -68,11 +68,11 @@ class MyApp extends StatelessWidget {
                    'assets/images/carrossel 2/image 21.png',
                    'assets/images/carrossel 2/image 22.png',
                    'assets/images/carrossel 2/image 23.png',
-                   'assets/images/carrossel 2/image 24.png',
+                   'assets/images/carrossel 2/Praia da Enseada.png',
                    'assets/images/carrossel 2/image 25.png',
                    'assets/images/carrossel 2/image 26.png',
                    'assets/images/carrossel 2/image 27.png',
-                   'assets/images/carrossel 2/image 28.png',
+                   'assets/images/carrossel 2/Praia de Jabaquara.png',
                  ]),
                 SizedBox(height: 20), // Espaçamento entre os carrosséis
                 Center(child: Text(
@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
                    'assets/images/carrossel 3/image 30.png',
                    'assets/images/carrossel 3/image 31.png',
                    'assets/images/carrossel 3/image 32.png',
-                   'assets/images/carrossel 3/image 33.png',
+                   'assets/images/carrossel 3/Praia Brava de Guaecá.png',
                    'assets/images/carrossel 3/image 34.png',
                    'assets/images/carrossel 3/image 35.png',
                    'assets/images/carrossel 3/image 36.png',
